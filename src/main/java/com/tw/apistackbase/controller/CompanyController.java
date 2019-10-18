@@ -1,11 +1,12 @@
 package com.tw.apistackbase.controller;
 
-import com.tw.apistackbase.core.Company;
-import com.tw.apistackbase.repository.CompanyRepository;
+import com.tw.apistackbase.entity.Company;
+import com.tw.apistackbase.model.CompanyModel;
 import com.tw.apistackbase.service.CompanyService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,12 +21,13 @@ public class CompanyController {
     }
 
     @PostMapping(produces = {"application/json"})
+    @ResponseStatus(HttpStatus.CREATED)
     public Company add(@RequestBody Company company) {
         return companyService.save(company);
     }
 
     @GetMapping(produces = {"application/json"})
-    public Company getCompanyByName(@RequestParam(required = false) String name) {
+    public CompanyModel getCompanyByName(@RequestParam(required = false) String name) {
         return companyService.findOneByName(name);
     }
 

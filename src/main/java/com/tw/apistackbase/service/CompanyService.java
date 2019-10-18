@@ -1,8 +1,10 @@
 package com.tw.apistackbase.service;
 
-import com.tw.apistackbase.core.Company;
+import com.tw.apistackbase.entity.Company;
+import com.tw.apistackbase.model.CompanyModel;
 import com.tw.apistackbase.repository.CompanyRepository;
 import javassist.NotFoundException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -20,8 +22,11 @@ public class CompanyService {
         throw new NotFoundException("Not found");
     }
 
-    public Company findOneByName(String name) {
-        return companyRepository.findOneByName(name);
+    public CompanyModel findOneByName(String name) {
+        Company company = companyRepository.findOneByName(name);
+        CompanyModel companyModel = new CompanyModel();
+        BeanUtils.copyProperties(company, companyModel);
+        return companyModel;
     }
 
     public Company save(Company company) {

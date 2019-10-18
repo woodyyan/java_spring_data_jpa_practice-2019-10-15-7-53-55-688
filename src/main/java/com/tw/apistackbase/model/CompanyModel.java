@@ -1,20 +1,19 @@
-package com.tw.apistackbase.core;
+package com.tw.apistackbase.model;
 
-import javax.persistence.*;
+import com.tw.apistackbase.entity.CompanyProfile;
+import com.tw.apistackbase.entity.Employee;
+
 import java.util.List;
 
-@Entity
-public class Company {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class CompanyModel {
     private Long id;
 
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    private String location;
+
     private CompanyProfile profile;
 
-    @OneToMany(cascade = CascadeType.ALL)
     private List<Employee> employees;
 
     public Long getId() {
@@ -33,10 +32,10 @@ public class Company {
         this.name = name;
     }
 
-    public Company() {
+    public CompanyModel() {
     }
 
-    public Company(String name) {
+    public CompanyModel(String name) {
         this.name = name;
     }
 
@@ -54,5 +53,13 @@ public class Company {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

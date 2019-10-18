@@ -1,4 +1,4 @@
-package com.tw.apistackbase.core;
+package com.tw.apistackbase.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
